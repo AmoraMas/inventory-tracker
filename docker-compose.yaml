@@ -1,0 +1,71 @@
+version: '3'
+# This example runs three servers, PostgreSQL, pgAdmin, and a frontEnd server
+
+# Each service runs in a seperate container
+services:
+  # the name of the service
+  express-service:
+    # shorthand name for the container
+    container_name: inventory-tracker
+
+    # build path to the Dockerfile
+    build: .
+
+    # create a bind mount so local changes show up in the container
+    # for development (lots of changes - restarting the container would be slow)
+    volumes:
+      - ./:/app:Z
+
+    # map the ports <outside container>:<inside container>
+    ports:
+      - "8000:8000"
+
+    # make sure the postgres-db service starts first
+    depends_on:
+      - postgres-db
+
+    # makes the value "postgres-db" available in process.env.DATABASE_HOST in Node server, 
+    # so Pool connects to the container instead of localhost
+    environment:
+      DATABASE_HOST: "postgres-db"
+
+    # Override the entrypoint in the Dockerfile
+    command: [ "nodemon", "apiServer.js" ]
+
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:latest
+    restart: always
+    environment:
+      DATABASE_HOST: postgres-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: inventory-tracker
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "6543:5432"
+    volumes:
+      - pgdatasource:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgAdmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: amoramas1984@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - postgres-db
+
+volumes:
+  pgdatasource:
+  pgadmin-data:
+
+
+networks:
+  default:

@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "node apiServer.js",
+    "dev": "nodemon apiServer.js",
+    "migrate": "node migration.js",
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.21",
+    "pg": "^8.10.0"
+  }
+}
