@@ -23,12 +23,12 @@ function runMigration1(pool, callback){
             currentInv INTEGER,
             minimumInv INTEGER)`, (err, data) => {
                 if (err){
-                    console.log("CREATE TABLE pets failed");
+                    console.log("CREATE TABLE products failed");
                 } else {
-                    console.log("pets table created sucessfully");
+                    console.log("Products table created sucessfully");
                 }
                 // tell pg we are done with this connection, then execute callback to close it
-                done();
+                //done();
                 runMigration2();
             }
         );
@@ -44,12 +44,12 @@ function runMigration2 () {
         cost NUMERIC,
         datePurchased DATE)`, (err, data) => {
             if (err){
-                console.log("CREATE TABLE pets failed");
+                console.log("CREATE TABLE purchases failed");
             } else {
-                console.log("pets table created sucessfully");
+                console.log("Purchases table created sucessfully");
             }
             // tell pg we are done with this connection, then execute callback to close it
-            done();
+            //done();
             runMigration3();
         }
     );
@@ -68,9 +68,9 @@ function runMigration3 () {
         dateOrdered DATE,
         dateShipped DATE)`, (err, data) => {
             if (err){
-                console.log("CREATE TABLE pets failed");
+                console.log("CREATE TABLE orders failed");
             } else {
-                console.log("pets table created sucessfully");
+                console.log("Orders table created sucessfully");
             }
             // tell pg we are done with this connection, then execute callback to close it
             done();

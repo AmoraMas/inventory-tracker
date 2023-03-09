@@ -34,7 +34,7 @@ function runSeeder1(pool, callback){
                 console.log("Did not seed new data because Table was not empty");
             }
             // tell pg we are done with this connection, then execute callback to close it
-            done();
+            //done();
             runSeeder2();
         });
     });
@@ -61,7 +61,7 @@ function runSeeder2 () {
             console.log("Did not seed new data because Table was not empty");
         }
         // tell pg we are done with this connection, then execute callback to close it
-        done();
+        //done();
         runSeeder3();
     });
 }
@@ -94,7 +94,7 @@ function runSeeder3 () {
     });
 }
 
-runSeeder(pool, () => {
+runSeeder1(pool, () => {
     // seeding is done, so we can close the pool
     pool.end();
 })

@@ -3,7 +3,7 @@
 const { Pool } = require('pg');
 // take in environmental variables for DB connection, or use default if not defined
 // our local environment may not have them, but Render will when deployed
-const POSTGRES_HOST =  process.env.POSTGRES_HOST || 'postgres-db';
+const POSTGRES_HOST =  process.env.POSTGRES_HOST || '127.0.0.1';
 const POSTGRES_DB = process.env.POSTGRES_DB || 'inventory-tracker';
 const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password';
 const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres';
@@ -16,7 +16,7 @@ function getPool(){
     host: POSTGRES_HOST,
     database: POSTGRES_DB,
     password: POSTGRES_PASSWORD,
-    port: 5432,
+    port: 6543,
   };
 
   // if DATABASE_URL is set as an environmental variable (from Render), use that

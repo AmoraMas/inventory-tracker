@@ -1,4 +1,96 @@
 body {
+    background: #888888;
+    color: #000000;
+}
+
+h2 {
+    margin: 5px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+}
+
+button {
+    width: 50%;
+    padding: 5px;
+    margin: 5px;
+}
+
+#ShowAll,
+#ShowPending,
+#UpdateDB {
+    background: #999999;
+}
+
+#deleteProduct,
+#deletePurchase,
+#deleteOrder {
+    background: #f33939;
+    color: #FFFFFF;
+}
+
+.everything {
+    width: 95vw;
+    height: 95vh;
+    display: grid;
+    grid-template-columns: [col1-start] 20% [col2-start] 80% [col2-end];
+    grid-template-rows: [row1-start] 40% [row2-start] 30% [row3-start] 30% [row3-end];
+}
+
+tr:hover {
+    background: lightgrey;
+}
+
+.selected {
+    background: gray;
+}
+
+.warning {
+    background: orange;
+}
+
+.danger {
+    background: #f33939;
+}
+
+.controlsDiv,
+.productsDiv,
+.purchasesDiv,
+.ordersDiv {
+    box-shadow: 4px 8px 8px 1px rgba(0, 0, 0, 0.5);
     background: #EEEEEE;
-    color: #00FF00;
+    margin: 10px;
+    margin-top: 0px;
+    padding: 4px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    text-align: justify;
+}
+
+.controlsDiv {
+    grid-column: col1-start;
+    grid-row: row1-start / row3-start;
+    width: 95%;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.productsDiv {
+    grid-column: col2-start;
+    grid-row: row1-start;
+}
+
+.purchasesDiv {
+    grid-column: col2-start;
+    grid-row: row2-start;
+}
+
+.ordersDiv {
+    grid-column: col1-start / col2-end;
+    grid-row: row3-start;
+}
+
+.header {
+    font-weight: bold;
+    background: #FFFFFF;
 }
